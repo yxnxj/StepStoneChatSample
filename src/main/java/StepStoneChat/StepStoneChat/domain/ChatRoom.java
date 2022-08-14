@@ -1,5 +1,6 @@
 package StepStoneChat.StepStoneChat.domain;
 
+import StepStoneChat.StepStoneChat.service.ChatService;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.web.socket.WebSocketSession;
