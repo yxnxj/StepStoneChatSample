@@ -26,7 +26,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 //        registry.addEndpoint("/chat");
 //        registry.addEndpoint("/chat").withSockJS();
-        registry.addEndpoint("/ws-stomp").setAllowedOrigins("*")
+        registry.addEndpoint("/ws-stomp").setAllowedOriginPatterns("*")
                 .withSockJS();
         //stomp websocket 연결 endpoint는 /ws-stomp로 설정
         //개발 서버 접속 주소는 ws://localhost:8080/ws-stomp 다.

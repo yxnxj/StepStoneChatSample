@@ -26,15 +26,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String payload = message.getPayload();
-        log.info("payload {}", payload);
-//        TextMessage textMessage = new TextMessage("Welcome chat server");
-//        session.sendMessage(textMessage);
-        //WebSocket Client로 부터 채팅 메시지를 전달받아 채팅 메시지 객체로 변환
-        ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
-        //전달 받은 메시지에 담긴 채팅방 Id로 발송 대상 채팅방 정보를 조회함
-        ChatRoom room = chatService.findRoomById(chatMessage.getRoomId());
-        //해당 채팅방에 입장해 있는 모든 클라이언트들(WebSocket session)에게 타입에 따른 메시지 전송
-        room.handleActions(session, chatMessage, chatService);
+//        String payload = message.getPayload();
+//        log.info("payload {}", payload);
+////        TextMessage textMessage = new TextMessage("Welcome chat server");
+////        session.sendMessage(textMessage);
+//        //WebSocket Client로 부터 채팅 메시지를 전달받아 채팅 메시지 객체로 변환
+//        ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
+//        //전달 받은 메시지에 담긴 채팅방 Id로 발송 대상 채팅방 정보를 조회함
+//        ChatRoom room = chatService.findRoomById(chatMessage.getRoomId());
+//        //해당 채팅방에 입장해 있는 모든 클라이언트들(WebSocket session)에게 타입에 따른 메시지 전송
+//        room.handleActions(session, chatMessage, chatService);
     }
 }
