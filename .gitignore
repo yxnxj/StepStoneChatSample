@@ -143,4 +143,4 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij
 
-src/main/resources/application.properties
+src/main/resources/application.yml
