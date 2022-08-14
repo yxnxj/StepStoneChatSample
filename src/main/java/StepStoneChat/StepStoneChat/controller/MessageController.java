@@ -12,9 +12,9 @@ import java.util.Date;
 
 @Controller
 public class MessageController {
-    @MessageMapping("/chat/{chatId}")
-    @SendTo("/topic/messages/{chatId}")
-    public OutputMessage send(Message message, @DestinationVariable String chatId){
+    @MessageMapping("/chat/{roomId}")
+    @SendTo("/topic/messages/{roomId}")
+    public OutputMessage send(Message message, @DestinationVariable String roomId){
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
