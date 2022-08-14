@@ -2,6 +2,7 @@ package StepStoneChat.StepStoneChat.controller;
 
 import StepStoneChat.StepStoneChat.domain.Message;
 import StepStoneChat.StepStoneChat.domain.OutputMessage;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,9 @@ import java.util.Date;
 
 @Controller
 public class MessageController {
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public OutputMessage send(Message message) throws Exception {
+    @MessageMapping("/chat/{chatId}")
+    @SendTo("/topic/messages/{chatId}")
+    public OutputMessage send(Message message, @DestinationVariable String chatId){
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         return new OutputMessage(message.getFrom(), message.getText(), time);
     }
