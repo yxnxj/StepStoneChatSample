@@ -15,7 +15,7 @@ public class ChatRoomRepository {
         chatRoomMap = new LinkedHashMap<>();
     }
 
-    public List<ChatRoom> findAllRooms(){
+    public List<ChatRoom> findAllRoom(){
         List chatRooms = new ArrayList(chatRoomMap.values());
         Collections.reverse(chatRooms);
         return chatRooms;
