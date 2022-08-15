@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Controller
+//@Controller
 public class MessageController {
     @MessageMapping("/chat/{roomId}")
     @SendTo("/topic/messages/{roomId}")

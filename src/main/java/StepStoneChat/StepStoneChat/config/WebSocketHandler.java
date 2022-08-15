@@ -17,9 +17,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
  * 한 서버에 여러 개의 클라이언트가 접속하기 때문에 여러 클라이언트가 발송한 메시지를 받아 처리해줄 Handler의 작성이 필요하다.
  * client로 부터 받은 메시지를 Console Log에 출력하고, Client로 환영 메시지를 보낸다.
  */
-@Slf4j
-@RequiredArgsConstructor
-@Component
+//@Slf4j
+//@RequiredArgsConstructor
+//@Component
 public class WebSocketHandler extends TextWebSocketHandler {
 //    private final ObjectMapper objectMapper;
 //    private final ChatService chatService;
