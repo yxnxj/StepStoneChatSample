@@ -1,7 +1,7 @@
 
 spring:
-  profiles:
-    active: local
   redis:
     host: Standalone Redis 호스트
     port: Standalone Redis 포트
+
+#    추후 서버에서 구동할 시 필요한 설정
