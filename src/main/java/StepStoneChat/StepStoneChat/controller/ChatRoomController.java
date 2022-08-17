@@ -3,8 +3,12 @@ package StepStoneChat.StepStoneChat.controller;
 // import 생략...
 
 import StepStoneChat.StepStoneChat.domain.ChatRoom;
+import StepStoneChat.StepStoneChat.domain.LoginInfo;
+import StepStoneChat.StepStoneChat.jwt.JwtTokenProvider;
 import StepStoneChat.StepStoneChat.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +21,20 @@ import java.util.List;
 public class ChatRoomController {
 
     private final ChatRoomRepository chatRoomRepository;
-
+    private final JwtTokenProvider jwtTokenProvider;
     // 채팅 리스트 화면
+
+    /**
+     * 로그인 한 회원의 id 및 Jwt토큰 정보를 조회
+     * @return
+     */
+    @GetMapping("/user")
+    @ResponseBody
+    public LoginInfo getUserInfo(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        return LoginInfo.builder().name(name).token(jwtTokenProvider.generateToken(name)).build();
+    }
     @GetMapping("/room")
     public String rooms(Model model) {
         return "chat/room";

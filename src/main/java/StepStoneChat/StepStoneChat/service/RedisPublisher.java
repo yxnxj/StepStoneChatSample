@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 // import 생략...
 @RequiredArgsConstructor
-@Service
+/**
+ * 리스너 단일화 및 reditTemplate을 이용하여 기능 대체가 가능하므로 삭제
+ */
+//@Service
 public class RedisPublisher {
     private final RedisTemplate<String, Object> redisTemplate;
 

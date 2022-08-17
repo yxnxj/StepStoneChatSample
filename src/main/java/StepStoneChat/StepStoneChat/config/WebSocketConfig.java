@@ -2,15 +2,18 @@ package StepStoneChat.StepStoneChat.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.*;
 
 @Configuration
 @EnableWebSocketMessageBroker
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 //@EnableWebSocket // WebSocket 활성화
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 //    private final WebSocketHandler webSocketHandler;
+
+    private final StompHandler stompHandler;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -33,10 +36,18 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     /**
+     * WebSocket 앞 단에서 StompHandler가 token을 체크할 수 있도록 인터셉터로 설정
+     * @param registration
+     */
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.interceptors(stompHandler);
+    }
+
+    /**
      * WebSocket 만으로 구현하면 각 채팅방과 세션을 일일이 구현하고 메시지 발송 부분을 관리하는 추가 코드를 구현해 줘야 한다.
      * broker를 사용하여 pub/sub으로 최적화 된 방식으로 메시징을 구현한다.
      */
-
 //    /**
 //     * addHandler : WebSocket에 접속하기 위한 endPoint를 /ws/chat/으로 설정한다.
 //     * setAllowedOrigins : CORS, 도메인이 다른 서버에서도 접속 가능하도록 설정

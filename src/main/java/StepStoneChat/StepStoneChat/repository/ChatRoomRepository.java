@@ -8,12 +8,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
 
 @RequiredArgsConstructor
-@Repository
+@Service
 public class ChatRoomRepository {
     // 채팅방(topic)에 발행되는 메시지를 처리할 Listner
     private final RedisMessageListenerContainer redisMessageListener;
@@ -29,7 +30,6 @@ public class ChatRoomRepository {
     @PostConstruct
     private void init() {
         opsHashChatRoom = redisTemplate.opsForHash();
-        topics = new HashMap<>();
     }
 
     public List<ChatRoom> findAllRoom() {
